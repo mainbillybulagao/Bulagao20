@@ -1,0 +1,57 @@
+using System;
+
+class StudentGrades
+{
+    static void Main()
+    {
+
+        int[,] grades = {
+            {85, 90, 78}, // Student 1
+            {88, 76, 92}, // Student 2
+            {90, 85, 85}, // Student 3
+            {70, 75, 80}, // Student 4
+            {95, 89, 91}  // Student 5
+        };
+
+        int students = grades.GetLength(0);
+        int subjects = grades.GetLength(1);
+
+        
+        Console.WriteLine("Grades Matrix:");
+        for (int i = 0; i < students; i++)
+        {
+            for (int j = 0; j < subjects; j++)
+            {
+                Console.Write(grades[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("\nAverage Grade for Each Student:");
+        for (int i = 0; i < students; i++)
+        {
+            int sum = 0;
+            for (int j = 0; j < subjects; j++)
+            {
+                sum += grades[i, j];
+            }
+            double average = (double)sum / subjects;
+            Console.WriteLine($"Student {i + 1}: {average:F2}");
+        }
+
+
+        Console.WriteLine("\nHighest Grade for Each Subject:");
+        for (int j = 0; j < subjects; j++)
+        {
+            int highest = grades[0, j];
+            for (int i = 1; i < students; i++)
+            {
+                if (grades[i, j] > highest)
+                {
+                    highest = grades[i, j];
+                }
+            }
+            Console.WriteLine($"Subject {j + 1}: {highest}");
+        }
+    }
+}
